@@ -38,10 +38,13 @@ function SpellCardDetails({ spell }) {
           {spell.source} - {spell.page}
         </Typography>
       </div>
-      <Divider className={classes.smallDivider} />
+      <hr className={classes.smallDivider} />
       <SpellHeaderInfo spell={spell} />
-      <Divider className={classes.bigDivider}/>
+      <hr className={classes.bigDivider}/>
       {spell.entries.map( (entry, key) => (
+          <Entry entry={entry} key={key}/>
+      ))}
+      {spell.entriesHigherLevel && spell.entriesHigherLevel.map( (entry, key) => (
           <Entry entry={entry} key={key}/>
       ))}
 
