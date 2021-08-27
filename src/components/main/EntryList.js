@@ -6,7 +6,7 @@ function EntryList({entry, key}) {
     return (
         <List>
             {entry.items.map((item, key) => (
-                <ListItem key="key">
+                <ListItem key={key}>
                     <SanitizedText text={item} />
                 </ListItem>
             ))}
