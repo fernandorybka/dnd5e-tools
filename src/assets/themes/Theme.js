@@ -19,6 +19,10 @@ const theme = createTheme({
     },
   },
   typography: {
+    body1: {
+      fontSize: '0.8rem',
+      color: "red"
+    },
     h5: {
       fontFamily: 'Teko',
       fontSize: '1.8rem',
