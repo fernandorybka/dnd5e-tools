@@ -13,6 +13,16 @@ function Entry({entry, key}) {
             case 'table': 
                 return ( <EntryTable key={key ? `${key}t` : undefined} entry={entry} /> )
             break;
+            case 'entries': 
+                return ( 
+                    <div key={key}> 
+                        <b>{entry.name}: </b>
+                        {entry.entries.map((item, key) => (
+                            <Entry key={key} entry={item} />
+                        ))}
+                    </div>
+                 )
+            break;
             default: 
                 throw 'Entry has type: '+entry.type;
         }
