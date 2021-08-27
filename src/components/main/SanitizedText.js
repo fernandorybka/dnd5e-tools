@@ -20,7 +20,7 @@ function SanitizedText({text, key}) {
         if (specialTag.startsWith('{@filter') || specialTag.startsWith('{@item')) {
             stringText = stringText.substring(0,i) + 
                          stringText.substring(i+9,stringText.indexOf('|')) +
-                         stringText.substring(stringText.indexOf("}"));
+                         stringText.substring(stringText.indexOf("}")+1);
         } else {
             console.log( 'Tag '+specialTag+' unsanitized' );
             stringText = stringText.replaceAll(specialTag, '')
