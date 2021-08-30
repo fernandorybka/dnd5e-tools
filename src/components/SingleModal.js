@@ -1,9 +1,8 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import Emitter from '../services/Emitter';
-import { CardClasses } from '../assets/themes/Colors';
+import { CardClasses } from './CardProvider';
 import { makeStyles } from '@material-ui/core';
 
 
@@ -21,6 +20,7 @@ function SingleModal() {
 
   const [modalContent, setModalContent] = React.useState('');
   const [modalCustomClass, setModalCustomClass] = React.useState('');
+  const [modalKey, setModalKey] = React.useState(new Date().getTime());
   const [open, setOpen] = React.useState(false);
 
   Emitter.on('OPEN_MODAL_SIGNAL', (modalInfo) => handleModalOpenSignal(modalInfo));
@@ -28,6 +28,7 @@ function SingleModal() {
   const handleModalOpenSignal = (modalInfo) => {
     if (modalInfo.customClass) setModalCustomClass(classes[modalInfo.customClass]);
 
+    setModalKey(modalInfo.key)
     setModalContent(modalInfo.content);
     setOpen(true);
   };
@@ -47,24 +48,19 @@ function SingleModal() {
   }, [open]);
 
   return (
-    <div>
+    <div key={modalKey}>
       <Dialog
         open={open}
         onClose={handleClose}
         scroll='paper'
         aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
         fullWidth={true}
         maxWidth={'md'}
       >
-        <DialogContent dividers={true} className={`${modalCustomClass} ${classes.modal}`}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
-          >
+        <DialogContent dividers={true} className={`${modalCustomClass} ${classes.modal}`} key={`d${modalKey}`}>
+          
             {modalContent}
-          </DialogContentText>
+
         </DialogContent>
         {/* <DialogActions>
           <Button onClick={handleClose} color="primary">
