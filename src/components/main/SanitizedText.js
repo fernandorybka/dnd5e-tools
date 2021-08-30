@@ -1,19 +1,21 @@
 import React from 'react'
 
-function SanitizedText({text, key}) {
+const simpleTagReplace = (stringText, ...tags) => {
+  let finalString = stringText;
+  tags.map( (tag, index)  => {
+    let reg = new RegExp("{@" + tag + "\\s(\\w+)\\s*}", "g");
+    finalString = finalString.replace( reg, function(match, tagval) { return `${tagval}`});
+  });
+  return finalString;
+}
+
+
+function SanitizedText({text}) {
     let stringText = String( text );
     let i;
-
-    stringText = stringText.replaceAll('{@damage', '')
-    .replaceAll('{@dice', '')
-    .replaceAll('{@creature', '')
-    .replaceAll('{@condition', '')
-    .replaceAll('{@spell', '')
-    .replaceAll('{@skill', '')
-    .replaceAll('{@sense', '')
-    .replaceAll('{@scaledamage', '')
-    .replaceAll('{@hit', '')
-    .replaceAll('{@chance', '');
+  
+  stringText = simpleTagReplace(stringText, 'skill', 'damage', 'dice', 'creature', 
+  'condition', 'spell', 'sense', 'scaledamage', 'hit', 'chance');
 
     while( (i = stringText.indexOf("{@")) > -1) {
         let specialTag = stringText.substring(i, stringText.indexOf('}', i));
@@ -27,9 +29,9 @@ function SanitizedText({text, key}) {
         }         
     }
     stringText = stringText.replaceAll('}', '');
-
+    
     return (
-        <a key={key}>
+        <a>
           {stringText}  
         </a>
     )
