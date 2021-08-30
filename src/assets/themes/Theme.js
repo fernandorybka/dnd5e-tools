@@ -5,10 +5,10 @@ import {Colors} from './Colors'
 const theme = createTheme({
   palette: {
     primary: {
-      main: Colors.pastelBlue,
+      main: Colors.pastelOrange,
     },
     secondary: {
-      main: Colors.pastelOrange,
+      main: Colors.pastelBlue,
     },
     background: {
       default: Colors.pastelGray,
