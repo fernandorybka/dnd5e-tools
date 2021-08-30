@@ -1,14 +1,13 @@
 import React from "react";
 
-function NameAndSourceItem({ key, item, total, counter, mainClass }) {
+function NameAndSourceItem({ item, total, counter, mainClass }) {
   if (item.subclass) {
     return (
-        <NameAndSourceItem key={`${key}s`} item={item.subclass} total={total} counter={counter} mainClass={item.class.name} />
+        <NameAndSourceItem item={item.subclass} total={total} counter={counter} mainClass={item.class.name} />
     )
   } else {
     return (
       <span
-        key={key}
         title={`Class source: ${item.source}. ${
           item.definedInSource
             ? ` Spell list defined in: ${item.definedInSource}.`

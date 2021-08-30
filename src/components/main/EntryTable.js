@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function EntryTable({entry, key}) {
+function EntryTable({entry}) {
     return (
         <div>
             
