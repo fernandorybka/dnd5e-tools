@@ -15,7 +15,6 @@ import SpellHeaderInfo from "./SpellHeaderInfo";
 
 function SpellCard({item, classes}) {
   const openSpellModal = () => {
-    console.log('entrou');
     Emitter.emit('OPEN_MODAL_SIGNAL', {customClass: `card${item.school}`, content: <SpellCardDetails spell={item} />});
   }
 
