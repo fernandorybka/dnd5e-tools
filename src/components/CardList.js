@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Container, Typography, makeStyles, Box } from "@material-ui/core";
 import ArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import { Colors } from "../assets/themes/Colors";
+import Card, {CardClasses} from "./CardProvider";
 
-import { Colors, CardClasses } from "../assets/themes/Colors";
-
-import SpellCard from "./spells/SpellCard";
 
 const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
   {
@@ -49,39 +48,6 @@ const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
     transition: "ease all 0.3s",
     cursor: "pointer",
   },
-  card: {
-    height: "320px",
-    width: "230px",
-    cursor: "pointer",
-    transition: "ease all 0.2s",
-    transform: "scale(0.95)",
-    borderRadius: 10,
-    "&:hover": {
-      transform: "scale(1)",
-    },
-  },
-  cardTitle: {
-    //background: Colors.pastelBlue,
-    //marginBottom: theme.spacing(1)
-    height: "5rem",
-  },
-  cardSubTitle: {
-    color: "#000000",
-    marginBottom: theme.spacing(1),
-    fontSize: "14px",
-  },
-  cardInfo: {
-    paddingTop: "0px",
-    paddingLeft: theme.spacing(1),
-    color: Colors.pastelBlack,
-    width: "100%",
-  },
-  cardActions: {
-    color: "white",
-    textAlign: "left",
-    display: "flex",
-    justifyContent: "space-between",
-  },
   bottom: {
     paddingBottom: "0px",
     marginBottom: "0px",
@@ -95,7 +61,7 @@ const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
   },
 })));
 
-function CardList({ listName, items }) {
+function CardList({ type, listName, items }) {
   const classes = useStyles();
   const [scrollX, setScrollX] = useState(0);
 
@@ -141,7 +107,7 @@ function CardList({ listName, items }) {
           </Box>
 
           {items.map((item, key) => (
-            <SpellCard key={key} item={item} classes={classes} />
+            <Card type={type} key={key} item={item} classes={classes} />
           ))}
 
           <Box

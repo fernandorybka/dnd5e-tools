@@ -46,6 +46,7 @@ function App() {
           {spellsByClass.map((spellsByLevel, key) => (
             <CardList
               key={key}
+              type="spell"
               listName={`Level ${key}`}
               items={spellsByLevel}
             />
