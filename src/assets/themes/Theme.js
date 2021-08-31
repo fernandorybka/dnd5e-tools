@@ -11,7 +11,7 @@ const theme = createTheme({
       main: Colors.pastelBlue,
     },
     background: {
-      default: Colors.pastelGray,
+      default: Colors.pastelBlack,
       paper: Colors.pastelYellow,
     },
     text: {
