@@ -1,7 +1,7 @@
 import React, { Profiler, useEffect, useState } from "react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import CardList from "../components/CardList";
-import FeaturedCard from "../components/FeaturedCard";
+import DndFilters from "../components/DndFilters";
 import theme from "../assets/themes/Theme";
 import dnd5etoolsdb from "../services/dnd5etoolsdb";
 
@@ -22,26 +22,28 @@ function App() {
   }
 
   const [spellsByClass, setSpellsByClass] = useState([]);
+  const [filters, setFilters] = useState({'dndClass' : 'Wizard'});
+  
 
   useEffect(() => {
     const loadAll = async () => {
       let spellsRaw = await dnd5etoolsdb.getAllSpells();
       let filteredSpellsArray = dnd5etoolsdb.getSpellsByClass(
         spellsRaw,
-        "Druid"
+        filters.dndClass
       );
       setSpellsByClass(filteredSpellsArray);
     };
 
     loadAll();
-  }, []);
+  }, [filters]);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <SingleModal />
-      {/* <FeaturedCard /> */}
-      <div style={{marginTop: '0px'}}>
+      <DndFilters filters={filters} setFilters={setFilters} /> 
+      <div style={{marginTop: '-200px'}}>
         <Profiler id="listas" onRender={onRenderCallback}>
           {spellsByClass.map((spellsByLevel, key) => (
             <CardList
