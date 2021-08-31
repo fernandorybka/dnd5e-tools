@@ -35,13 +35,13 @@ const componentsToString = (components) => {
   }
 
 function SpellHeaderInfo({ spell }) {
-  if (!spell) return ('');
+  if (!spell) return (<></>);
   return (
     <div>
       {spell.level}st-level {SchoolsOfMagic[spell.school]}
       <br />
       <b>Casting Time:</b>
-      {spell.time.map((spell, key) => `${spell.number} ${spell.unit}`)}
+      {spell.time.map((spell, key) => (`${spell.number} ${spell.unit}`))}
       <br />
       <b>Focus:</b> {spell.range.type}
       <br />
