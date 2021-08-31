@@ -29,7 +29,7 @@ const theme = createTheme({
       color: 'white',
       textTransform: 'uppercase',
     }
-  }
+  },
 });
 
 export default theme;
