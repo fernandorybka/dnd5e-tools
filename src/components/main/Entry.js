@@ -11,6 +11,15 @@ function Entry({entry}) {
                 return ( <EntryList entry={entry} /> )
             case 'table': 
                 return ( <EntryTable entry={entry} /> )
+            case 'quote': 
+                return (
+                    <div style={{paddingBottom: "20px", paddingLeft: "35px", fontStyle: "italic"}}> 
+                        {entry.entries.map((item, key) => (
+                            <Entry key={key} entry={item} />
+                        ))}
+                        <b>By {entry.by}</b>
+                    </div>
+                )
             case 'entries': 
                 return ( 
                     <div> 
