@@ -4,13 +4,13 @@ import { Colors } from "../assets/themes/Colors";
 import { DnDClasses } from "../util/DnDClasses"
 import DnDClassFilter from "./filters/DnDClassFilter";
 import SpellLevelFilter from "./filters/SpellLevelFilter";
+import SourceFilter from "./filters/SourceFilter";
 
 const useStyles = (props) =>
   makeStyles((theme) => ({
     featuredSection: {
       backgroundSize: "cover",
-      backgroundPosition: "top",
-      //backgroundImage: 'url(https://www.dndbeyond.com/attachments/thumbnails/8/374/850/568/creation-1.png)'
+      backgroundPosition: "top",    
       backgroundImage: `url(${props.featuredImage})`,
       transition: 'ease all 0.5s'
     },
@@ -29,28 +29,12 @@ const useStyles = (props) =>
       paddingBottom: "200px",
       background: `linear-gradient(to top, ${Colors.pastelBlack} 10%, transparent 50%)`,
     },
-    title: {
-      fontWeight: "bold",
-      fontSize: "4rem",
-    },
-    subTitle: {
-      color: Colors.pastelYellow,
-      fontWeight: "bold",
-      fontSize: "16px",
-    },
-    info: {
-      color: Colors.pastelGray,
-      fontWeight: "bold",
-      fontSize: "13px",
-      marginBottom: theme.spacing(1),
-    },
     content: {
       maxWidth: "500px",
       fontSize: "14px",
     },
-
     labelSpells: {
-      fontSize: "4rem",
+      fontSize: "3rem",
       fontWeight: "bold",
       paddingTop: "14px",
       paddingLeft: "8px",
@@ -102,13 +86,11 @@ function DndFilters({ filters, setFilters }) {
               selectedFilters={selectedFilters}
               handleLevelsChange={handleLevelsChange}
             />
-            {
-            // level
-            // source
-            // school
-            //
-            }
-            <Button className={classes.doFilter} variant="contained" color="primary" onClick={handleClick}>
+            <SourceFilter
+              selectedFilters={selectedFilters}
+              handleInputChange={handleInputChange}
+            />
+            <Button className={classes.doFilter} variant="contained" color={"primary"} onClick={handleClick}>
                 Filter
             </Button>
           </FormControl>
