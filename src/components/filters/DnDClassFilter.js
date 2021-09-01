@@ -1,12 +1,12 @@
 import React from "react";
-import { InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
+import { FormControl, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
 import { DnDClasses } from "../../util/DnDClasses";
 
 const useStyles = makeStyles((theme) => ({
   dndClassTitle: {
     fontWeight: "bold",
-    fontSize: "4rem",
+    fontSize: "3rem",
   },
   blue: {
     color: Colors.pastelBlue,
@@ -25,7 +25,7 @@ function DnDClassFilter({ selectedFilters, handleInputChange }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <FormControl>
       <InputLabel id="demo-simple-select-label" className={classes.blue}>
         Class
       </InputLabel>
@@ -42,7 +42,7 @@ function DnDClassFilter({ selectedFilters, handleInputChange }) {
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </FormControl>
   );
 }
 
