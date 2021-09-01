@@ -21,16 +21,21 @@ function App() {
     console.log(`duracao: ${actualDuration}`);
   }
 
+  const [allSpells, setAllSpells] = useState([]);
   const [spellsByClass, setSpellsByClass] = useState([]);
-  const [filters, setFilters] = useState({'dndClass' : 'Wizard'});
+  const [filters, setFilters] = useState({dndClass : 'Wizard', spellLevels: [0, 9]});
   
 
   useEffect(() => {
     const loadAll = async () => {
-      let spellsRaw = await dnd5etoolsdb.getAllSpells();
+      let spellsRaw = allSpells;
+      if (allSpells.length == 0) {
+        spellsRaw = await dnd5etoolsdb.getAllSpells();
+        setAllSpells(spellsRaw);
+      }
       let filteredSpellsArray = dnd5etoolsdb.getSpellsByClass(
         spellsRaw,
-        filters.dndClass
+        filters
       );
       setSpellsByClass(filteredSpellsArray);
     };
