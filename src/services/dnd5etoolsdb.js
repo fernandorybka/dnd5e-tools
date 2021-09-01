@@ -44,19 +44,14 @@ export default {
 
         return spellsJson;
     },
-    getSpellsByClass: (spellsRaw, dndClass) => {
-        let myClassSpells = spellsRaw.spell.filter(spell => spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(item => item.name === dndClass));
-        return [
-            myClassSpells.filter(spell => spell.level === 0),
-            myClassSpells.filter(spell => spell.level === 1),
-            myClassSpells.filter(spell => spell.level === 2),
-            myClassSpells.filter(spell => spell.level === 3),
-            myClassSpells.filter(spell => spell.level === 4),
-            myClassSpells.filter(spell => spell.level === 5),
-            myClassSpells.filter(spell => spell.level === 6),
-            myClassSpells.filter(spell => spell.level === 7),
-            myClassSpells.filter(spell => spell.level === 8),
-            myClassSpells.filter(spell => spell.level === 9)
-        ]
+    getSpellsByClass: (spellsRaw, filters) => {
+        let myClassSpells = spellsRaw.spell.filter(spell => spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(item => item.name === filters.dndClass));
+        
+        let spellsByClass = [];
+        
+        for (let i = filters.spellLevels[0]; i <= filters.spellLevels[1]; i++) {
+            spellsByClass[i] = myClassSpells.filter(spell => spell.level === i);
+        }
+        return spellsByClass;
     }
 }
