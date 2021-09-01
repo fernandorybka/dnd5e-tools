@@ -1,6 +1,7 @@
 import React from "react";
 import { InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
+import { DnDClasses } from "../../util/DnDClasses";
 
 const useStyles = makeStyles((theme) => ({
   dndClassTitle: {
@@ -18,23 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ALL_CLASSES = [
-  "Artificer",
-  "Barbarian",
-  "Bard",
-  "Druid",
-  "Monk",
-  "Cleric",
-  "Fighter",
-  "Mystic",
-  "Paladin",
-  "Ranger",
-  "Rogue",
-  "RuneScribe",
-  "Sorcerer",
-  "Warlock",
-  "Wizard",
-];
+
 
 function DnDClassFilter({ selectedFilters, handleInputChange }) {
   const classes = useStyles();
@@ -51,9 +36,9 @@ function DnDClassFilter({ selectedFilters, handleInputChange }) {
         value={selectedFilters.dndClass}
         className={classes.dndClassTitle}
       >
-        {ALL_CLASSES.map((item, key) => (
-          <MenuItem className={classes.options} value={item}>
-            {item}
+        {DnDClasses.map((item, key) => (
+          <MenuItem key={key} className={classes.options} value={item.name}>
+            {item.name}
           </MenuItem>
         ))}
       </Select>
