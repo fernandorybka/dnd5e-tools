@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Box, Button, FormControl, makeStyles } from "@material-ui/core";
 import { Colors } from "../assets/themes/Colors";
+import { DnDClasses } from "../util/DnDClasses"
 import DnDClassFilter from "./filters/DnDClassFilter";
+import SpellLevelFilter from "./filters/SpellLevelFilter";
 
 const useStyles = (props) =>
   makeStyles((theme) => ({
@@ -10,16 +12,12 @@ const useStyles = (props) =>
       backgroundPosition: "top",
       //backgroundImage: 'url(https://www.dndbeyond.com/attachments/thumbnails/8/374/850/568/creation-1.png)'
       backgroundImage: `url(${props.featuredImage})`,
+      transition: 'ease all 0.5s'
     },
     featuredContainer: {
       height: "100vh",
       width: "100vw",
-      //background: 'linear-gradient(to right, ' + theme.themeColors.darkLiver + ' 30%, ' + theme.themeColors.atomicTangerine + ' 60%, transparent 100%)'
       background: `linear-gradient(90deg, ${Colors.pastelBlack} 30%, transparent 80%)`,
-      // theme.themeColors.laserLemon + ' 30%, ' +
-      //theme.themeColors.atomicTangerine + ' 30%, ' +
-      // theme.themeColors.cambridgeBlue + ' 50%, ' +
-      // theme.themeColors.lightGoldenrodYellow + ' 60%,' +
     },
     featuredContainerVertical: {
       height: "100%",
@@ -30,16 +28,13 @@ const useStyles = (props) =>
       paddingLeft: theme.spacing(8),
       paddingBottom: "200px",
       background: `linear-gradient(to top, ${Colors.pastelBlack} 10%, transparent 50%)`,
-
-      //background: 'linear-gradient(to top, ' + Colors.pastelGray + ' 0%, transparent 70%)',
-      //background: 'linear-gradient(321deg, rgba(247,255,88,1) 0%, rgba(243,246,144,1) 5%, rgba(239,236,202,1) 60%, rgba(197,216,190,1) 76%, rgba(169,203,183,1) 100%)',
     },
     title: {
       fontWeight: "bold",
       fontSize: "4rem",
     },
     subTitle: {
-      color: Colors.pastelYellow, //atomicTangerine, //lightGoldenrodYellow,
+      color: Colors.pastelYellow,
       fontWeight: "bold",
       fontSize: "16px",
     },
@@ -67,12 +62,10 @@ const useStyles = (props) =>
   }));
 
 function DndFilters({ filters, setFilters }) {
-  const classes = useStyles({
-    featuredImage:
-      "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/06/Dungeons-and-Dragons-Bard-Cropped.jpg",
-  })();
-
   const [selectedFilters, setSelectedFilters] = useState(filters);
+  const [featuredImage, setfeaturedImage] = useState(DnDClasses.filter(dndClass => dndClass.name === filters.dndClass)[0].featuredImg)
+
+  const classes = useStyles({featuredImage: featuredImage})();
 
   const handleInputChange = (event) => {
     setSelectedFilters((prevState) => ({
@@ -81,8 +74,16 @@ function DndFilters({ filters, setFilters }) {
     }));
   };
 
+  const handleLevelsChange = (event, newValue)  => {
+    setSelectedFilters((prevState) => ({
+      ...prevState,
+      spellLevels: newValue,
+    }));
+  };
+
   const handleClick = () => {
     setFilters(selectedFilters);
+    setfeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
   }
 
   return (
@@ -97,7 +98,16 @@ function DndFilters({ filters, setFilters }) {
               />
               <div className={classes.labelSpells}>Spells</div>
             </div>
-
+            <SpellLevelFilter
+              selectedFilters={selectedFilters}
+              handleLevelsChange={handleLevelsChange}
+            />
+            {
+            // level
+            // source
+            // school
+            //
+            }
             <Button className={classes.doFilter} variant="contained" color="primary" onClick={handleClick}>
                 Filter
             </Button>
