@@ -33,8 +33,8 @@ export const CardClasses = {
       border: "white solid 2px",
     },
     card: {
-      height: "320px",
-      width: "230px",
+      height: "280px",
+      width: "210px",
       cursor: "pointer",
       transition: "ease all 0.2s",
       transform: "scale(0.95)",
