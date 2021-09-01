@@ -4,6 +4,7 @@ import CardList from "../components/CardList";
 import DndFilters from "../components/DndFilters";
 import theme from "../assets/themes/Theme";
 import dnd5etoolsdb from "../services/dnd5etoolsdb";
+import { InitialSpellsFilters } from "../components/spells/InitialSpellsFilters";
 
 import "../assets/css/DnD5eTools.css";
 import SingleModal from "../components/SingleModal";
@@ -23,7 +24,7 @@ function App() {
 
   const [allSpells, setAllSpells] = useState([]);
   const [spellsByClass, setSpellsByClass] = useState([]);
-  const [filters, setFilters] = useState({dndClass : 'Wizard', spellLevels: [0, 9]});
+  const [filters, setFilters] = useState(InitialSpellsFilters);
   
 
   useEffect(() => {
