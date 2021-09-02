@@ -37,6 +37,7 @@ function DnDClassFilter({ selectedFilters, handleInputChange }) {
         className={classes.dndClassTitle}
       >
         {DnDClasses.map((item, key) => (
+          item.spellCaster === 'true' &&
           <MenuItem key={key} className={classes.options} value={item.name}>
             {item.name}
           </MenuItem>
