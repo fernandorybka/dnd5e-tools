@@ -4,6 +4,7 @@ import ArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { Colors } from "../assets/themes/Colors";
 import Card, {CardClasses} from "./CardProvider";
+import Emitter from "../services/Emitter";
 
 
 const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
@@ -65,7 +66,9 @@ function CardList({ type, listName, items }) {
   const classes = useStyles();
   const [scrollX, setScrollX] = useState(0);
 
-  const getListWidth = () => ( items ? items.length * 230 + 60 : 0);
+  Emitter.on('NEW_FILTER_SIGNAL', () => setScrollX(0));
+
+  const getListWidth = () => ( items ? items.length * 226 + 60 : 0);
 
   const handleScrollLeft = () => {
     let x = scrollX + window.innerWidth / 2;
@@ -77,14 +80,15 @@ function CardList({ type, listName, items }) {
     setScrollX(x > window.innerWidth-getListWidth()-30 ? x : window.innerWidth-getListWidth()-30);
   };
 
+  // connect items by siblings
   let itemsConnectedBySibling = items;
   for( var i = 0; i < itemsConnectedBySibling.length; i++ ) {
     if (i > 0) {
       itemsConnectedBySibling[i].prev = itemsConnectedBySibling[i-1]
-    }
+    } else {delete itemsConnectedBySibling[i].prev}
     if (i < itemsConnectedBySibling.length-1) {
       itemsConnectedBySibling[i].next = itemsConnectedBySibling[i+1];
-    }
+    } else {delete itemsConnectedBySibling[i].next}
   }
 
   return (
