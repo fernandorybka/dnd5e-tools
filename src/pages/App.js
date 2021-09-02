@@ -1,7 +1,7 @@
 import React, { Profiler, useEffect, useState } from "react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import CardList from "../components/CardList";
-import DndFilters from "../components/DndFilters";
+import Filters from "../components/filters/Filters";
 import theme from "../assets/themes/Theme";
 import dnd5etoolsdb from "../services/dnd5etoolsdb";
 import { InitialSpellsFilters } from "../components/spells/InitialSpellsFilters";
@@ -48,7 +48,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <SingleModal />
-      <DndFilters filters={filters} setFilters={setFilters} /> 
+      <Filters filters={filters} setFilters={setFilters} /> 
       <div style={{marginTop: '-200px'}}>
         <Profiler id="listas" onRender={onRenderCallback}>
           {spellsByClass.map((spellsByLevel, key) => (

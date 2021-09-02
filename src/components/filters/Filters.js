@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, FormControl, makeStyles } from "@material-ui/core";
-import { Colors } from "../assets/themes/Colors";
-import { DnDClasses } from "../util/DnDClasses"
-import DnDClassFilter from "./filters/DnDClassFilter";
-import SpellLevelFilter from "./filters/SpellLevelFilter";
-import SourceFilter from "./filters/SourceFilter";
+import { Colors } from "../../assets/themes/Colors";
+import { DnDClasses } from "../../util/DnDClasses"
+import DnDClassFilter from "./DnDClassFilter";
+import SpellLevelFilter from "./SpellLevelFilter";
+import SourceFilter from "./SourceFilter";
 
 const useStyles = (props) =>
   makeStyles((theme) => ({
@@ -45,11 +45,15 @@ const useStyles = (props) =>
     }
   }));
 
-function DndFilters({ filters, setFilters }) {
+function Filters({ filters, setFilters }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
   const [featuredImage, setfeaturedImage] = useState(DnDClasses.filter(dndClass => dndClass.name === filters.dndClass)[0].featuredImg)
 
   const classes = useStyles({featuredImage: featuredImage})();
+
+  useEffect(() => {
+    handleFilterCommited();
+  }, [selectedFilters])
 
   const handleInputChange = (event) => {
     setSelectedFilters((prevState) => ({
@@ -59,13 +63,16 @@ function DndFilters({ filters, setFilters }) {
   };
 
   const handleLevelsChange = (event, newValue)  => {
-    setSelectedFilters((prevState) => ({
-      ...prevState,
-      spellLevels: newValue,
-    }));
+    if (selectedFilters.spellLevels[0] !== newValue[0] 
+      ||selectedFilters.spellLevels[1] !== newValue[1] ) {
+        setSelectedFilters((prevState) => ({
+          ...prevState,
+          spellLevels: newValue,
+        }));
+    }
   };
 
-  const handleClick = () => {
+  const handleFilterCommited = () => {
     setFilters(selectedFilters);
     setfeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
   }
@@ -90,9 +97,6 @@ function DndFilters({ filters, setFilters }) {
               selectedFilters={selectedFilters}
               handleInputChange={handleInputChange}
             />
-            <Button className={classes.doFilter} variant="contained" color={"primary"} onClick={handleClick}>
-                Filter
-            </Button>
           </FormControl>
         </Box>
       </Box>
@@ -100,6 +104,6 @@ function DndFilters({ filters, setFilters }) {
   );
 }
 
-DndFilters.propTypes = {};
+Filters.propTypes = {};
 
-export default DndFilters;
+export default Filters;
