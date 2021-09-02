@@ -2,7 +2,6 @@
 
 
 const API_BASE = "https://5e.tools/data/spells/";
-const JSON_SPELLS_ROOT = "../assets/jsons/spells/";
 
 const basicFetch = async (endpoint) => {
     const request = await fetch(`${API_BASE}${endpoint}`);
@@ -10,7 +9,7 @@ const basicFetch = async (endpoint) => {
     return json;
 }
 
-export default {
+const dnd5etoolsdb = {
     getSpellsFrom5ETools: () => {
         let json = basicFetch('/spells-phb.json?v=1.134.0');
         return json;
@@ -29,7 +28,7 @@ export default {
             'PHB': require('../assets/jsons/spells/spells-phb.json'),
         };
             
-        for (let [key, spellSource] of Object.entries(spellsDB)){
+        for (let [, spellSource] of Object.entries(spellsDB)){
             spellsJson.spell = spellsJson.spell.concat(spellSource.spell);
         }
 
@@ -53,3 +52,5 @@ export default {
         return spellsByClass;
     }
 }
+
+export default dnd5etoolsdb;

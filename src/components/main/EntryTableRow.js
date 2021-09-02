@@ -1,6 +1,5 @@
 import React from 'react'
 import { TableCell } from '@material-ui/core'
-import SanitizedText from './SanitizedText'
 
 function EntryTableRow({cell}) {
     if (cell.type) {

@@ -32,14 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function SourceFilter({ selectedFilters, handleInputChange }) {
     const classes = useStyles();
 
-    const [personName, setPersonName] = React.useState([]);
-    const [spellsSourcesSelected, setSpellsSourcesSelected] = React.useState([]);
-
     const spellsSources = Sources.filter(source => source.spells === "true");
-
-    const handleChange = (event) => {
-        setSpellsSourcesSelected(event.target.value);
-    };
 
     return (
         <FormControl className={classes.selectSources}>

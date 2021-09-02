@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, FormControl, makeStyles } from "@material-ui/core";
+import { Box, FormControl, makeStyles } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
 import { DnDClasses } from "../../util/DnDClasses"
 import DnDClassFilter from "./DnDClassFilter";
@@ -47,13 +47,18 @@ const useStyles = (props) =>
 
 function Filters({ filters, setFilters }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
-  const [featuredImage, setfeaturedImage] = useState(DnDClasses.filter(dndClass => dndClass.name === filters.dndClass)[0].featuredImg)
+  const [featuredImage, setFeaturedImage] = useState(DnDClasses.filter(dndClass => dndClass.name === filters.dndClass)[0].featuredImg)
 
   const classes = useStyles({featuredImage: featuredImage})();
 
   useEffect(() => {
+    const handleFilterCommited = () => {
+      setFilters(selectedFilters);
+      setFeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
+    }
+
     handleFilterCommited();
-  }, [selectedFilters])
+  }, [selectedFilters, setFilters, setFeaturedImage])
 
   const handleInputChange = (event) => {
     setSelectedFilters((prevState) => ({
@@ -72,10 +77,7 @@ function Filters({ filters, setFilters }) {
     }
   };
 
-  const handleFilterCommited = () => {
-    setFilters(selectedFilters);
-    setfeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
-  }
+  
 
   return (
     <section className={classes.featuredSection}>

@@ -15,12 +15,12 @@ const componentsToString = (components) => {
   const durationToString = (duration) => {
     let durationArray = [];
   
-    duration.map((item, key) => {
+    duration.map((item) => {
       if (item.type === "timed") {
         durationArray.push(`${item.duration.amount} ${item.duration.type}${item.duration.amount > 1 ? 's' : ''}` )
       } else durationArray.push(item.type);
+      return durationArray;
     });
-  
     return durationArray.join(' | ');
   }
   

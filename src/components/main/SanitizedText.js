@@ -2,9 +2,9 @@ import React from 'react'
 
 const simpleTagReplace = (stringText, ...tags) => {
   let finalString = stringText;
-  tags.map( (tag, index)  => {
+  tags.map( (tag)  => {
     let reg = new RegExp("{@" + tag + "\\s*(\\w+\\s*)\\s*}", "g");
-    finalString = finalString.replace( reg, function(match, tagval) { return `${tagval}`});
+    return finalString = finalString.replace( reg, function(match, tagval) { return `${tagval}`});
   });
   return finalString;
 }
@@ -30,9 +30,9 @@ function SanitizedText({text}) {
     stringText = stringText.replaceAll('}', '');
     
     return (
-        <a>
+        <span>
           {stringText}  
-        </a>
+        </span>
     )
 }
 

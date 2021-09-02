@@ -30,10 +30,11 @@ function App() {
   useEffect(() => {
     const loadAll = async () => {
       let spellsRaw = allSpells;
-      if (allSpells.length == 0) {
+      if (allSpells.length === 0) {
         spellsRaw = await dnd5etoolsdb.getAllSpells();
         setAllSpells(spellsRaw);
       }
+
       let filteredSpellsArray = dnd5etoolsdb.getSpellsByClass(
         spellsRaw,
         filters
@@ -42,7 +43,7 @@ function App() {
     };
 
     loadAll();
-  }, [filters]);
+  }, [filters, allSpells]);
 
   return (
     <ThemeProvider theme={theme}>

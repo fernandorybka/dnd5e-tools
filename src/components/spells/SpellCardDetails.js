@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, makeStyles, Divider } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 import { CardClasses } from "../CardProvider";
 import SpellHeaderInfo from "./SpellHeaderInfo";
 import NameAndSourceArray from "../main/NameAndSourceArray";
