@@ -8,8 +8,6 @@ import {
 } from "@material-ui/core";
 import SpellCardDetails from "./SpellCardDetails";
 import Emitter from "../../services/Emitter";
-
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import SpellHeaderInfo from "./SpellHeaderInfo";
 
 
@@ -34,12 +32,6 @@ function SpellCard({item, classes}) {
         <CardContent className={classes.cardInfo}>
           <SpellHeaderInfo spell={item} />
         </CardContent>
-
-        {/* <CardActions className={classes.cardActions}>
-          <IconButton aria-label="Add to Favorites">
-            <FavoriteIcon />
-          </IconButton>
-        </CardActions> */}
       </Box>
     </Card>
   );

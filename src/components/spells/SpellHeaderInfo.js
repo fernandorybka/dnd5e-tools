@@ -8,8 +8,6 @@ const componentsToString = (components) => {
     }
     if (components.m) {
       componentsArray = componentsArray.concat('M');
-      //"m": { "text": "a sapphire worth 1,000 gp", "cost": 100000 }
-      //componentsArray.push('M (' + components.m + ')');
     }
     return componentsArray;
   }
