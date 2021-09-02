@@ -77,6 +77,16 @@ function CardList({ type, listName, items }) {
     setScrollX(x > window.innerWidth-getListWidth()-30 ? x : window.innerWidth-getListWidth()-30);
   };
 
+  let itemsConnectedBySibling = items;
+  for( var i = 0; i < itemsConnectedBySibling.length; i++ ) {
+    if (i > 0) {
+      itemsConnectedBySibling[i].prev = itemsConnectedBySibling[i-1]
+    }
+    if (i < itemsConnectedBySibling.length-1) {
+      itemsConnectedBySibling[i].next = itemsConnectedBySibling[i+1];
+    }
+  }
+
   return (
     <div className={classes.listScroller}>
       <div>
@@ -106,7 +116,7 @@ function CardList({ type, listName, items }) {
             <ArrowLeft style={{ fontSize: 80 }} />
           </Box>
 
-          {items.map((item, key) => (
+          {itemsConnectedBySibling.map((item, key) => (
             <Card type={type} key={key} item={item} classes={classes} />
           ))}
 

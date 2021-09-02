@@ -4,12 +4,15 @@ import { CardClasses } from "../CardProvider";
 import SpellHeaderInfo from "./SpellHeaderInfo";
 import NameAndSourceArray from "../main/NameAndSourceArray";
 import Entry from "../main/Entry";
+import Emitter from "../../services/Emitter";
+import { ArrowLeft, ArrowRight } from "@material-ui/icons";
+import { Colors } from "../../assets/themes/Colors";
 
 const useStyles = makeStyles((theme) =>
   Object.assign(CardClasses, {
     modalContainer: {
       margin: 0,
-      padding: "10px",
+      padding: "30px",
     },
     spellHeader: {
       display: "flex",
@@ -21,16 +24,47 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "15px",
       border: "white solid 2px",
     },
+
+    arrow: {
+      width:'30px',
+      margin: '20px',
+      height:"calc(100% - 40px)", 
+      position:"absolute", 
+      top: "0", 
+      justifyContent: "center", 
+      alignItems: "center", 
+      display: "flex", 
+      opacity: "1",
+      color: Colors.pastelWhite,
+      cursor:"pointer",
+      overflow: "hidden"
+    }
   })
 );
 
 function SpellCardDetails({ spell }) {
   const classes = useStyles();
 
+  const openNext = () => {
+    if (spell.next) {
+      Emitter.emit('OPEN_MODAL_SIGNAL', {customClass: `card${spell.next.school}`, content: <SpellCardDetails spell={spell.next} />});
+    }
+  };
+
+  const openPrev = () => {
+    if (spell.prev) {
+      Emitter.emit('OPEN_MODAL_SIGNAL', {customClass: `card${spell.prev.school}`, content: <SpellCardDetails spell={spell.prev} />});
+    }
+  };
+  
   return (
-    <div
-      className={`${classes.modalContainer} ${classes[`card${spell.school}`]}`}
-    >
+    <div className={`${classes.modalContainer} ${classes[`card${spell.school}`]}`}>
+      <div style={{left:"0"}} className={classes.arrow} onClick={openPrev} >
+        <ArrowLeft style={{ fontSize: 60 }} />
+      </div>
+      <div style={{right:"0"}} className={classes.arrow} onClick={openNext} >
+        <ArrowRight style={{ fontSize: 60 }} />
+      </div>
       <div className={classes.spellHeader}>
         <Typography variant="h5">{spell.name}</Typography>
         <Typography variant="h6">
