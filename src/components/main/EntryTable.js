@@ -2,18 +2,6 @@ import React from "react";
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import EntryTableRow from "./EntryTableRow";
 
-// type": "table",
-//           "caption": "Precipitation",
-//           "colLabels": ["Stage", "Condition"],
-//           "colStyles": ["col-1 text-center", "col-11"],
-//           "rows": [
-//             ["1", "Clear"],
-//             ["2", "Light clouds"],
-//             ["3", "Overcast or ground fog"],
-//             ["4", "Rain, hail, or snow"],
-//             ["5", "Torrential rain, driving hail, or blizzard"]
-//           ]
-
 function EntryTable({ entry }) {
   return (
     <TableContainer style={{paddingTop: '32px'}} >
