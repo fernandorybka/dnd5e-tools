@@ -30,7 +30,7 @@ function Entry({entry}) {
                     </div>
                  )
             default: 
-                throw 'Entry has type: '+entry.type;
+                throw new Error('Entry has type: '+entry.type);
         }
     } else {
         return (
