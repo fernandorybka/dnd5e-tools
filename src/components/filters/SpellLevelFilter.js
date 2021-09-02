@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   spellLevelSlider: {
       paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
+      paddingBottom: theme.spacing(3),
       width: '445px',
       maxWidth: '90%',
       '& .MuiSlider-markLabel': {
