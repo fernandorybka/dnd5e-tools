@@ -1,13 +1,13 @@
 import React, { Profiler, useEffect, useState } from "react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
-import CardList from "../components/CardList";
+import CardList from "../components/cards/CardList";
 import Filters from "../components/filters/Filters";
 import theme from "../assets/themes/Theme";
 import dnd5etoolsdb from "../services/dnd5etoolsdb";
 import { InitialSpellsFilters } from "../components/spells/InitialSpellsFilters";
+import SingleModal from "../components/main/SingleModal";
 
 import "../assets/css/DnD5eTools.css";
-import SingleModal from "../components/SingleModal";
 
 function App() {
   function onRenderCallback(

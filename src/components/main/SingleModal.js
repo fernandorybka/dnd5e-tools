@@ -1,8 +1,8 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import Emitter from '../services/Emitter';
-import { CardClasses } from './CardProvider';
+import Emitter from '../../services/Emitter';
+import { CardClasses } from '../cards/CardProvider';
 import { makeStyles } from '@material-ui/core';
 
 

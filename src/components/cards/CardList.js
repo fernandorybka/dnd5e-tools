@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Container, Typography, makeStyles, Box } from "@material-ui/core";
 import ArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { Colors } from "../assets/themes/Colors";
+import { Colors } from "../../assets/themes/Colors";
 import Card, {CardClasses} from "./CardProvider";
-import Emitter from "../services/Emitter";
+import Emitter from "../../services/Emitter";
 
 
 const useStyles = makeStyles((theme) => (Object.assign(CardClasses,

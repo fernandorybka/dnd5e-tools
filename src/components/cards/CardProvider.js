@@ -1,7 +1,7 @@
 import React from 'react'
-import {Colors} from '../assets/themes/Colors'
+import {Colors} from '../../assets/themes/Colors'
 
-import SpellCard from "./spells/SpellCard"
+import SpellCard from "../spells/SpellCard"
 
 export const CardClasses = {
     cardC: {
