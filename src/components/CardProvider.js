@@ -34,7 +34,7 @@ export const CardClasses = {
     },
     card: {
       height: "280px",
-      width: "210px",
+      width: "226px",
       cursor: "pointer",
       transition: "ease all 0.2s",
       transform: "scale(0.95)",
