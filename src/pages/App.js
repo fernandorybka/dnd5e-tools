@@ -19,7 +19,7 @@ function App() {
     commitTime, // when React committed this update
     interactions // the Set of interactions belonging to this update
   ) {
-    console.log(`duracao: ${actualDuration}`);
+    //console.log(`duracao: ${actualDuration}`);
   }
 
   const [allSpells, setAllSpells] = useState([]);
