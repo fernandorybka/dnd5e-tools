@@ -62,11 +62,6 @@ function SingleModal() {
             {modalContent}
 
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            OK
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );
