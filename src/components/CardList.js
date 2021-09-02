@@ -102,7 +102,7 @@ function CardList({ type, listName, items }) {
           {listName}
         </Typography>
         <Typography variant="body1" className={classes.listSubtitle}>
-          ({items.length} spell{items.length !== 1 ? "s" : ""})
+          ({items.length} {type}{items.length !== 1 ? "s" : ""})
         </Typography>
         <Container
           className={classes.listContainer}
