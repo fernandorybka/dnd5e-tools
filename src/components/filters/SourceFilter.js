@@ -37,8 +37,6 @@ function SourceFilter({ selectedFilters, handleInputChange }) {
 
     const spellsSources = Sources.filter(source => source.spells === "true");
 
-    //setSpellsSourcesSelected(selectedFilters.spellsSources);
-
     const handleChange = (event) => {
         setSpellsSourcesSelected(event.target.value);
     };
