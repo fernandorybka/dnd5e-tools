@@ -41,3 +41,6 @@ git clone https://github.com/fernandorybka/dnd5e-tools.git
 cd dnd5e-tools/
 npm start
 ```
+
+## License
+This project is licensed under the terms of the MIT license.
