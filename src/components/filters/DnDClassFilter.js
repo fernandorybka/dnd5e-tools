@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
   dndClassTitle: {
     fontWeight: "bold",
     fontSize: "3rem",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: "2.4rem",
+    },
   },
   blue: {
     color: Colors.pastelBlue,

@@ -13,11 +13,17 @@ const useStyles = makeStyles((theme) =>
     modalContainer: {
       margin: 0,
       padding: "30px",
+      [theme.breakpoints.down('xs')]: {
+        padding: "5px",
+      },
     },
     spellHeader: {
       display: "flex",
       justifyContent: "space-between",
       marginBottom: "10px",
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: "5px",
+      },
     },
     bigDivider: {
       marginTop: "15px",
@@ -37,7 +43,11 @@ const useStyles = makeStyles((theme) =>
       opacity: "1",
       color: Colors.pastelWhite,
       cursor:"pointer",
-      overflow: "hidden"
+      overflow: "hidden",
+      [theme.breakpoints.down('xs')]: {
+        width:'10px',
+        margin: '10px',
+      },
     }
   })
 );

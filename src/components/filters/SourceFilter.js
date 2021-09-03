@@ -25,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
     chip: {
         margin: 1,
         fontSize: '9px',
-        background: Colors.pastelBlue
+        background: Colors.pastelBlue,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '9px',
+            margin: '1px',
+            padding: '0',
+            height: '2px'
+        },
     },
   }));
 

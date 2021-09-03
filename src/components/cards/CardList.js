@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Container, Typography, makeStyles, Box } from "@material-ui/core";
 import ArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ArrowRight from "@material-ui/icons/KeyboardArrowRight";
+
 import { Colors } from "../../assets/themes/Colors";
 import Card, {CardClasses} from "./CardProvider";
 import Emitter from "../../services/Emitter";
+
 
 
 const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
@@ -48,6 +50,9 @@ const useStyles = makeStyles((theme) => (Object.assign(CardClasses,
     borderRadius: "8px",
     transition: "ease all 0.3s",
     cursor: "pointer",
+    [theme.breakpoints.down('xs')]: {
+      opacity: '0.8'
+    },
   },
   bottom: {
     paddingBottom: "0px",
@@ -94,11 +99,7 @@ function CardList({ type, listName, items }) {
   return (
     <div className={classes.listScroller}>
       <div>
-        <Typography
-          variant="h3"
-          color="secondary"
-          className={classes.listTitle}
-        >
+        <Typography variant="h3" color="secondary" className={classes.listTitle}>
           {listName}
         </Typography>
         <Typography variant="body1" className={classes.listSubtitle}>
@@ -112,25 +113,21 @@ function CardList({ type, listName, items }) {
             marginLeft: scrollX,
           }}
         >
-          <Box
-            className={classes.scrollBox}
-            onClick={handleScrollLeft}
-            style={{ left: 0 }}
-          >
-            <ArrowLeft style={{ fontSize: 80 }} />
-          </Box>
+          {itemsConnectedBySibling.length > 0 &&
+            <Box className={classes.scrollBox} onClick={handleScrollLeft} style={{ left: 0 }}>
+              <ArrowLeft style={{ fontSize: 80 }} />
+            </Box>
+          }
 
           {itemsConnectedBySibling.map((item, key) => (
             <Card type={type} key={key} item={item} classes={classes} />
           ))}
 
-          <Box
-            className={classes.scrollBox}
-            onClick={handleScrollRight}
-            style={{ right: 0 }}
-          >
-            <ArrowRight style={{ fontSize: 80 }} />
-          </Box>
+          {itemsConnectedBySibling.length > 0 &&
+            <Box className={classes.scrollBox} onClick={handleScrollRight} style={{ right: 0 }}>
+              <ArrowRight style={{ fontSize: 80 }} />
+            </Box>
+          }
         </Container>
       </div>
     </div>

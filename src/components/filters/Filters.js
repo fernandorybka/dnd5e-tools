@@ -29,6 +29,9 @@ const useStyles = (props) =>
       paddingLeft: theme.spacing(8),
       paddingBottom: "200px",
       background: `linear-gradient(to top, ${Colors.pastelBlack} 10%, transparent 50%)`,
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: theme.spacing(2),
+      },
     },
     content: {
       maxWidth: "500px",
@@ -39,11 +42,11 @@ const useStyles = (props) =>
       fontWeight: "bold",
       paddingTop: "14px",
       paddingLeft: "8px",
+      [theme.breakpoints.down('xs')]: {
+        paddingTop: "20px",
+        fontSize: "2.4rem",
+      },
     },
-    doFilter: {
-        marginTop: theme.spacing(4),
-        width: '200px'
-    }
   }));
 
 function Filters({ filters, setFilters }) {
@@ -107,7 +110,5 @@ function Filters({ filters, setFilters }) {
     </section>
   );
 }
-
-Filters.propTypes = {};
 
 export default Filters;
