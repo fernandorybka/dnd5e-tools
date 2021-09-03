@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '9px',
             margin: '1px',
             padding: '0',
-            height: '2px'
+            height: '20px'
         },
     },
   }));
