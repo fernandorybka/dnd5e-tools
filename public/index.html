@@ -28,10 +28,36 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>DnD 5e Tools</title>
+    <style>
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+          opacity: 1;
+        }
+        25% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        75% {
+          opacity: 0.5;
+        }
+        to {
+          transform: rotate(359deg);
+          opacity: 1;
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body style="box-sizing: border-box; margin:0;padding:0;">
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div style="height: 100vh; width: 100vw; margin:0; display: flex; justify-content: center; align-items: center; background-color: #2b2b2b;">
+        <img src="assets/logo100.png" style="animation: rotation 4s infinite linear;"/>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
