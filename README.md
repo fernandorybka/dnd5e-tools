@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# DnD 5e Tools
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed for studying purposes to practice [React JS](https://reactjs.org/) with [Material-UI](https://material-ui.com/) components. But there was also a concern of creating a real world app, with a beautiful design and really useful tools. So, we choose to develop a fully featured fragment of a real DnD 5e Tool (and not to "just scratch" a complete featured app). 
 
-## Available Scripts
+## The App
+The main goal was to create a DnD 5e beautiful tool. For now, just Spell section is developed.
 
-In the project directory, you can run:
+Working build: https://dnd5e-tools.vercel.app/
 
-### `npm start`
+## Challenges and Opportunities
+- **Design**: the first challenge was to design an attractive design with a fast and easy interface, aiming to a perfect UX. The idea was to use cards (or grids) instead of tables, making the page more interactive and beautiful. 
+So a colorful grid of cards could be nice. Each card color carry an important content information - useful and pretty ;-)
+ 
+- **Performance**: second challenge would be to deal with great amount of data in a single page. With the help of [React Profiler ](https://reactjs.org/docs/profiler.html) we could measure and improve render performance. Also, looking back at the user experience, we created a major filter in data. Users would always apply at least dnd class filter to their search, so we made it mandatory.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Real world problem**: third challenge was to think a real world app even if we were just implementing a small part of it. Knowing all the possible future features made easier to choose a project architecture following [SOLID](https://en.wikipedia.org/wiki/SOLID) principles and avoided over engineering or poor design.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Responsiveness**: React is very responsive aimed, and that is really helpful :-) Even so, the app is supposed to be somehow a compendium with lots of written information. De UI should mind not just to be beautiful but to be easy, useful and fast, as our UX agreement stated. 
 
-### `npm test`
+- **Vercel build**: [Vercel](https://vercel.com/) usage was more a opportunity than a challenge. But to take full advantage of its static sites speed, DnD5eTools had to take a technical decision: use local jsons instead of grabbing them from an api or any other source. We could use cache control, but as the app data is quite small and static, we take this step of totally detaching it from any external source.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technologies, tools, frameworks
+|Techonology |Why|
+|-----------------------|-----------------|
+|[React JS](https://reactjs.org/) |Main reason for this project was to study React. But the main reason to study React is because it really is a powerful JavaScript library, fast, declarative, easy to expand with several plugins available. |
+|[Material-UI](https://material-ui.com/) |Used for  faster and easier web development, it was deeply customized with [Material-UI Theme](https://material-ui.com/customization/default-theme/#default-theme) and [Styles](https://material-ui.com/styles/api/#api)
+|[Event Emitter](https://github.com/primus/eventemitter3) |Used to unattached component communication. Observers and event emitters always make easier to follow [SOLID](https://en.wikipedia.org/wiki/SOLID) principles |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Database and another similar app
+All the data used comes from another great project called [5e.Tools](https://5e.tools/). 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
+To use this project you'll basically have to clone it using Git and manage with npm.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+# Cloning the repository
+git clone https://github.com/fernandorybka/dnd5e-tools.git
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Running it with npm on http://localhost:3000
+cd dnd5e-tools/
+npm start
+```
