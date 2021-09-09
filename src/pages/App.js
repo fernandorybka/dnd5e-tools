@@ -4,7 +4,7 @@ import CardList from "../components/cards/CardList";
 import Filters from "../components/filters/Filters";
 import theme from "../assets/themes/Theme";
 import dnd5etoolsdb from "../services/dnd5etoolsdb";
-import { InitialSpellsFilters } from "../components/spells/InitialSpellsFilters";
+import FiltersStorage from "../services/FiltersStorage";
 import SingleModal from "../components/main/SingleModal";
 
 import "../assets/css/DnD5eTools.css";
@@ -24,7 +24,7 @@ function App() {
 
   const [allSpells, setAllSpells] = useState([]);
   const [spellsByClass, setSpellsByClass] = useState([]);
-  const [filters, setFilters] = useState(InitialSpellsFilters);
+  const [filters, setFilters] = useState(FiltersStorage.getFilters());
   
 
   useEffect(() => {

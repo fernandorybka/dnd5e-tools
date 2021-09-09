@@ -6,6 +6,7 @@ import DnDClassFilter from "./DnDClassFilter";
 import SpellLevelFilter from "./SpellLevelFilter";
 import SourceFilter from "./SourceFilter";
 import Emitter from "../../services/Emitter";
+import FiltersStorage from "../../services/FiltersStorage";
 
 const useStyles = (props) =>
   makeStyles((theme) => ({
@@ -57,6 +58,7 @@ function Filters({ filters, setFilters }) {
 
   useEffect(() => {
     const handleFilterCommited = () => {
+      FiltersStorage.setFilters(selectedFilters);
       setFilters(selectedFilters);
       setFeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
       Emitter.emit('NEW_FILTER_SIGNAL');
