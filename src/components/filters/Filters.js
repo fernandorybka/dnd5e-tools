@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Box, FormControl, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
-import { DnDClasses } from "../../util/DnDClasses"
+import { DnDClasses } from "../../util/DnDClasses";
+import FiltersForm from "./FiltersForm";
 import DnDClassFilter from "./DnDClassFilter";
 import SpellLevelFilter from "./SpellLevelFilter";
 import SourceFilter from "./SourceFilter";
@@ -12,9 +13,9 @@ const useStyles = (props) =>
   makeStyles((theme) => ({
     featuredSection: {
       backgroundSize: "cover",
-      backgroundPosition: "top",    
+      backgroundPosition: "top",
       backgroundImage: `url(${props.featuredImage})`,
-      transition: 'ease all 0.5s'
+      transition: "ease all 0.5s",
     },
     featuredContainer: {
       height: "100vh",
@@ -30,7 +31,7 @@ const useStyles = (props) =>
       paddingLeft: theme.spacing(8),
       paddingBottom: "200px",
       background: `linear-gradient(to top, ${Colors.pastelBlack} 10%, transparent 50%)`,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down("xs")]: {
         paddingLeft: theme.spacing(2),
       },
     },
@@ -43,7 +44,7 @@ const useStyles = (props) =>
       fontWeight: "bold",
       paddingTop: "14px",
       paddingLeft: "8px",
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down("xs")]: {
         paddingTop: "20px",
         fontSize: "2.4rem",
       },
@@ -52,20 +53,27 @@ const useStyles = (props) =>
 
 function Filters({ filters, setFilters }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
-  const [featuredImage, setFeaturedImage] = useState(DnDClasses.filter(dndClass => dndClass.name === filters.dndClass)[0].featuredImg)
+  const [featuredImage, setFeaturedImage] = useState(
+    DnDClasses.filter((dndClass) => dndClass.name === filters.dndClass)[0]
+      .featuredImg
+  );
 
-  const classes = useStyles({featuredImage: featuredImage})();
+  const classes = useStyles({ featuredImage: featuredImage })();
 
   useEffect(() => {
     const handleFilterCommited = () => {
       FiltersStorage.setFilters(selectedFilters);
       setFilters(selectedFilters);
-      setFeaturedImage(DnDClasses.filter(dndClass => dndClass.name === selectedFilters.dndClass)[0].featuredImg);
-      Emitter.emit('NEW_FILTER_SIGNAL');
-    }
+      setFeaturedImage(
+        DnDClasses.filter(
+          (dndClass) => dndClass.name === selectedFilters.dndClass
+        )[0].featuredImg
+      );
+      Emitter.emit("NEW_FILTER_SIGNAL");
+    };
 
     handleFilterCommited();
-  }, [selectedFilters, setFilters, setFeaturedImage])
+  }, [selectedFilters, setFilters, setFeaturedImage]);
 
   const handleInputChange = (event) => {
     setSelectedFilters((prevState) => ({
@@ -74,42 +82,36 @@ function Filters({ filters, setFilters }) {
     }));
   };
 
-  const handleLevelsChange = (event, newValue)  => {
-    if (selectedFilters.spellLevels[0] !== newValue[0] 
-      ||selectedFilters.spellLevels[1] !== newValue[1] ) {
-        setSelectedFilters((prevState) => ({
-          ...prevState,
-          spellLevels: newValue,
-        }));
+  const handleLevelsChange = (event, newValue) => {
+    if (
+      selectedFilters.spellLevels[0] !== newValue[0] ||
+      selectedFilters.spellLevels[1] !== newValue[1]
+    ) {
+      setSelectedFilters((prevState) => ({
+        ...prevState,
+        spellLevels: newValue,
+      }));
     }
   };
 
-  
-
   return (
-    <section className={classes.featuredSection}>
-      <Box className={classes.featuredContainer}>
-        <Box className={classes.featuredContainerVertical}>
-          <FormControl className={classes.formControl}>
-            <div style={{ display: "flex" }}>
-              <DnDClassFilter
-                selectedFilters={selectedFilters}
-                handleInputChange={handleInputChange}
-              />
-              <div className={classes.labelSpells}>Spells</div>
-            </div>
-            <SpellLevelFilter
-              selectedFilters={selectedFilters}
-              handleLevelsChange={handleLevelsChange}
-            />
-            <SourceFilter
-              selectedFilters={selectedFilters}
-              handleInputChange={handleInputChange}
-            />
-          </FormControl>
-        </Box>
-      </Box>
-    </section>
+    <FiltersForm classes={classes}>
+      <div style={{ display: "flex" }}>
+        <DnDClassFilter
+          selectedFilters={selectedFilters}
+          handleInputChange={handleInputChange}
+        />
+        <div className={classes.labelSpells}>Spells</div>
+      </div>
+      <SpellLevelFilter
+        selectedFilters={selectedFilters}
+        handleLevelsChange={handleLevelsChange}
+      />
+      <SourceFilter
+        selectedFilters={selectedFilters}
+        handleInputChange={handleInputChange}
+      />
+    </FiltersForm>
   );
 }
 
