@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import { SchoolsOfMagic } from "../../util/SchoolsOfMagic";
 
 const componentsToString = (components) => {
@@ -52,4 +52,4 @@ function SpellHeaderInfo({ spell }) {
   );
 }
 
-export default SpellHeaderInfo;
+export default memo(SpellHeaderInfo);

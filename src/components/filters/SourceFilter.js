@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { Chip, FormControl, Input, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
 import { Sources } from "../../util/Sources";
@@ -70,5 +70,5 @@ function SourceFilter({ selectedFilters, handleInputChange }) {
 }
 
 
-export default SourceFilter
+export default memo(SourceFilter)
 

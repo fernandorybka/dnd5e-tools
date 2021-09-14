@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import {Colors} from '../../assets/themes/Colors'
 
 import SpellCard from "../spells/SpellCard"
@@ -76,5 +76,5 @@ function CardProvider({type, item, classes}) {
     )
 }
 
-export default CardProvider;
+export default memo(CardProvider);
 

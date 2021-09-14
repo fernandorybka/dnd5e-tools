@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import { Typography, makeStyles, Slider, FormControl } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
 
@@ -67,4 +67,4 @@ function SpellLevelFilter({ selectedFilters, handleLevelsChange }) {
   );
 }
 
-export default SpellLevelFilter;
+export default memo(SpellLevelFilter);

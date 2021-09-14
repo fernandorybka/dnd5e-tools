@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import { FormControl, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 import { Colors } from "../../assets/themes/Colors";
 import { DnDClasses } from "../../util/DnDClasses";
@@ -50,4 +50,4 @@ function DnDClassFilter({ selectedFilters, handleInputChange }) {
   );
 }
 
-export default DnDClassFilter;
+export default memo( DnDClassFilter );

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 
 const simpleTagReplace = (stringText, ...tags) => {
   let finalString = stringText;
@@ -36,5 +36,5 @@ function SanitizedText({text}) {
     )
 }
 
-export default SanitizedText
+export default memo(SanitizedText)
 
